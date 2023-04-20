@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>Pizza | Pizza Chicago</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pizza.html">Pizza</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                
+            </ul>
+        </nav>
+        <div class="phone-number">
+            <span>+32 81 00 00 00</span>
+        </div>
+    </header>
+    <main>
+        <aside><img src="photos/logo.png" alt="pizza chicago"/></aside>
+        <article>
+            <section class="columns-desktop">
+                <h1 class="pizzas">Pizza's</h1>
+                <div class="pie">
+                    <img src="photos/4cheese.png" alt="4cheese" width="160" height="160" />
+                    <div class="columns">
+                        <div class="title">4cheese</div>
+                        <div class="price">13,80$</div>
+                    </div>
+                    <button data-order="4cheese">Order</button>
+                </div>
+                
+                 <div class="pie pie2">
+                     <img src="photos/margarita.png" alt="margarita" width="160" height="160" />
+                     <div class="columns">
+                         <div class="title">Margarita</div>
+                        <div class="price">15.95$</div>
+                    </div>
+                    <button data-order="margarita">Order</button>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+<script>
+    window.addEventListener("DOMContentLoaded", function(e) {
+        const orderButtons = document.querySelectorAll("button[data-order]");
+
+        orderButtons.forEach(function(button) {
+           
+            button.addEventListener("click", function(e) {
+                const button = e.currentTarget;
+                const container = button.parentNode;
+
+                const order = {
+                    id: button.getAttribute("data-order"),
+                    title: container.querySelector(".title").innerText,
+                    price: container.querySelector(".price").innerText
+                    // desc: container.querySelector(".desc").innerText
+                };
+
+                localStorage.setItem("order", JSON.stringify(order));
+
+                const url = window.location.href.replace("pizza.html", "order.html");
+                window.location.href = url;
+            });
+        });
+    });
+</script>
+</html>
